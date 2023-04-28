@@ -1,16 +1,17 @@
-const tab = Array.from(document.querySelectorAll('.tab'))
+const tabs = Array.from(document.querySelectorAll('.tab'))
 const tabContent = Array.from(document.querySelectorAll('.tab__content'))
 
-for (let i = 0; i < tab.length; i++) {
-    tab[i].addEventListener ('click', () => {
-        
-        const tabActive = document.querySelector('.tab_active')
-        const tabContentActive = document.querySelector('.tab__content_active')
+function switching () {
+    for (let i = 0; i < tabs.length; i++) {
+        if (tabs[i].className === "tab tab_active") {
+            tabs[i].className = "tab";
+            tabContent[i].className = "tab__content"
+        }
+    }
+    this.className = "tab tab_active";
+    tabContent[tabs.indexOf(this)].className = "tab__content tab__content_active"
+}
 
-        tab[i].classList.add('tab_active')
-        tabActive.classList.remove('tab_active')
-
-        tabContent[tab.indexOf(tab[i])].classList.add('tab__content_active')
-        tabContentActive.classList.remove('tab__content_active')
-    })
-};
+tabs.forEach((item) => {
+    item.addEventListener("click", switching)
+});
